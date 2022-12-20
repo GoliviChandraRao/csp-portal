@@ -14,6 +14,10 @@ INSERT INTO roles(name) VALUES('ROLE_ADMIN');
 insert into users (id, email, password, username) values (1, 'admin@gmail.com', '$2a$10$LB0IPgoAClVzx/0obUfYJecFSgYqqO23nCUvu.N89qaOt8qnHJLWi', 'admin');
 insert into user_roles (user_id, role_id) values(1, 2);
 ```
+<img width="939" alt="image" src="https://user-images.githubusercontent.com/116070875/208569518-0b4dce95-cf0b-451e-b4e7-e2b85422249b.png">
+
 - using postman, register an admin user.
 - open the CSP portal - ```http://localhost:8080/csp``` which redirects to login page
 - click on signup link or use - ```http://localhost:8080/csp/usersignup``` to register yourself
+
+Admin pages will be accessed by only admin, Citizen pages will be accessed only by citizen. Only citizen can register, an admin account will be pre-inserted in database. User registration defaults to citizen. Once logged into the portal we must logout to see the login/register page. without logout citizen will be landed on home pages(birth certificate related pages) of respective user roles(user or admin)
