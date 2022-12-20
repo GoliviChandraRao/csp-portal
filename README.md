@@ -16,7 +16,6 @@ insert into user_roles (user_id, role_id) values(1, 2);
 ```
 <img width="939" alt="image" src="https://user-images.githubusercontent.com/116070875/208569518-0b4dce95-cf0b-451e-b4e7-e2b85422249b.png">
 
-- using postman, register an admin user.
 - open the CSP portal - ```http://localhost:8080/csp``` which redirects to login page
 - click on signup link or use - ```http://localhost:8080/csp/usersignup``` to register yourself
 
