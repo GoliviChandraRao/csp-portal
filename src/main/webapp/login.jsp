@@ -31,7 +31,7 @@
        .right-section {
               background: #eea1a1;
             border: 8px dashed white;
-            width: 35%;
+            width: 40%;
             border-radius: 5px;
             text-align: center;
             height: 90vh;
@@ -43,6 +43,7 @@
 <div class="home">
   <div class="left-section">
   <h4> <u>Mission </u></h4>
+  <h5> <p> CSP a single secure portal that acts as a window to the various services is beneficial for the citizens. Portals act as a one stop resource for information. Having a secure e- Government Portal will reduce the costs for the government in delivering timely information to its citizens. The citizens will also benefit from timely and readily available information as well as a medium to avail services. Having a web portal will reduce the need for dedicated governmental representatives to be available by other modes of communication like Phone or email to provide information to citizens. It will be much simpler and cost effective for Governmental Representatives as well as the Representatives in governmental legislation bodies to get in touch with the citizens to pass information on important legislations, Citizen action items etc.
   </div>
   <div class="right-section">
     <h4> <u>User Log In </u></h4>
