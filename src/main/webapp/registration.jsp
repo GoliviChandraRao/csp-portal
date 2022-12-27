@@ -10,6 +10,7 @@
       <meta charset="utf-8">
       <title>Log in with your account</title>
       <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet">
+     
 
       <style>
       .home {
@@ -36,8 +37,8 @@
   </div>
   <div>
               Enter Password <input id="password" name="password" type="password" class="form-control" placeholder="Password"/>
-Date of Birth <input id="username" name="username" type="text" class="form-control" placeholder="Username"
-                                                    autofocus="true"/>
+Date of Birth <input type="date" id="Date Of Birth" name="Date Of Birth"><br>
+
         Address:
         <textarea></textarea>
     </div>
@@ -45,14 +46,16 @@ Date of Birth <input id="username" name="username" type="text" class="form-contr
     <div>
                   Repeat Password <input id="password" name="password" type="password" class="form-control" placeholder="Password"/>
 
-                  Sex:
-<input id="username" name="sex" type="radio" class="form-control" placeholder="Username" />
-<input id="username" name="sex" type="radio" class="form-control" placeholder="Username"/>
+                  Sex:<br>
+	<label for="male">Male</label>
+        <input type="radio" name="gender" id="male" value="male"><br>
+        <label for="female">Female</label>
+        <input type="radio" name="gender" id="female" value="female">
         </div>
 
 
 </div>
- <button class="btn btn-lg btn-primary btn-block" id="apply">Apply</button>
+ <button class="btn btn-lg btn-primary btn-block" type="submit" id="apply">Apply</button>
      <button class="btn btn-lg btn-primary btn-block" type="reset" id="reset">Reset</button>
 </div>
 
@@ -63,7 +66,7 @@ Date of Birth <input id="username" name="username" type="text" class="form-contr
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
     <script>
      // this is the id of the form
-     $("#apply").click(function(e) {
+     $("#Apply").click(function(e) {
 
         // var username = $('#username').val();
          // var password = $('#password').val();
@@ -76,13 +79,14 @@ Date of Birth <input id="username" name="username" type="text" class="form-contr
                      'Accept': 'application/json',
                      'Content-Type': 'application/json'
                  },
-             dataType: 'json',
-             data: JSON.stringify({ "username": "satya",
-                   "email": "ruppa.sn@gmail.clom", "password": "satyapassword", "role": ["user"] }),
+             
+	     dataType: 'json',
+             data: JSON.stringify({ "username": "chandra",
+                   "email": "golivi.chandrarao@gmail.com", "password": "chandrapassword", "role": ["user"] }),
            success: function(result, status, jqXHR) {
                    var cookies = jqXHR.getResponseHeader('Set-Cookie');
                    console.log(cookies);
-                   window.location.href = '/';
+                   window.location.href = '/api/auth/signup';
              }
          });
 
