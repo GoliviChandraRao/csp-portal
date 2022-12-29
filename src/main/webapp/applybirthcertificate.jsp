@@ -31,7 +31,7 @@
 </h1>
 
 
-<form action="/action_page.php">
+<form action="/viewbcstatus.jsp">
 <label for="Child Name">Child Name: *</label>
 <input type=" " id="Child Name" name="Child Name">
 <label for="Father Name">Father Name: *</label>
