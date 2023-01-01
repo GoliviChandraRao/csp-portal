@@ -24,4 +24,4 @@ Admin pages will be accessed by only admin, Citizen pages will be accessed only 
 
 ### ERD
 
-<img width="1295" alt="image" src="https://user-images.githubusercontent.com/116070875/210161109-9e6182b5-ddd6-4382-a460-f35a2dfa5f80.png">
+<img width="1274" alt="image" src="https://user-images.githubusercontent.com/116070875/210161142-429950f1-a51a-458b-aa47-d13558090c35.png">
