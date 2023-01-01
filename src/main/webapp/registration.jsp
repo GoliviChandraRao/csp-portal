@@ -10,53 +10,68 @@
       <meta charset="utf-8">
       <title>Log in with your account</title>
       <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet">
-     
-
-      <style>
-      .home {
-        display: flex;
-        margin: 10px 20px;
-        justify-content: space-around;
-      }
-
-      </style>
+      <link href="/css/common.css" rel="stylesheet">
   </head>
 
   <body>
-  <div>
+  <div class="container">
+  <div class="heading"> New User Sign Up Form </div>
+  <form id="form">
 <div class="home">
   <div>
+  <div class="field">
   User Name <input id="username" name="username" type="text" class="form-control" placeholder="Username"
-                     autofocus="true"/>
+                       autofocus="true"/>
+  </div>
 
-                    Phone Number <input id="username" name="username" type="text" class="form-control" placeholder="Username"
-                                          autofocus="true"/>
-          Email <input id="username" name="username" type="text" class="form-control" placeholder="Username"
-                                                    autofocus="true"/>
+   <div class="field">
+    Phone Number <input id="phone" name="phone" type="text" class="form-control" placeholder="phone number"
+                                             autofocus="true"/>
+    </div>
+  <div class="field">
+  Email <input id="email" name="email" type="text" class="form-control" placeholder="email"
+                                                      autofocus="true"/>
+      </div>
 
   </div>
-  <div>
-              Enter Password <input id="password" name="password" type="password" class="form-control" placeholder="Password"/>
-Date of Birth <input type="date" id="Date Of Birth" name="Date Of Birth"><br>
 
-        Address:
-        <textarea></textarea>
+
+
+  <div>
+  <div class="field">
+     Enter Password <input id="password" name="password" type="password" class="form-control" placeholder="Password"/>
+        </div>
+   <div class="field">
+   Date of Birth <br/>
+   <input type="date" id="dob" name="dob" />
+      </div>
+     <div class="field">
+      Address:<br/>
+             <textarea id="address" placeholder="address"></textarea>
+        </div>
+
     </div>
 
     <div>
-                  Repeat Password <input id="password" name="password" type="password" class="form-control" placeholder="Password"/>
-
-                  Sex:<br>
-	<label for="male">Male</label>
-        <input type="radio" name="gender" id="male" value="male"><br>
-        <label for="female">Female</label>
-        <input type="radio" name="gender" id="female" value="female">
+    <div class="field">
+                      Repeat Password <input id="repeatpassword" name="repeatpassword" type="password" class="form-control" placeholder="repeat password"/>
         </div>
 
+   <div class="field">
+     Sex:<br>
+        	<label for="M">Male</label>
+               <input type="radio" name="gender" id="M" value="M"><br>
+           <label for="F">Female</label>
+              <input type="radio" name="gender" id="F" value="F">
+    </div>
+     </div>
 
 </div>
- <button class="btn btn-lg btn-primary btn-block" type="submit" id="apply">Apply</button>
-     <button class="btn btn-lg btn-primary btn-block" type="reset" id="reset">Reset</button>
+<div class="d-flex justify-content-around">
+ <button class="btn btn-lg btn-primary btn-block" type="button" id="apply">Apply</button>
+   <button class="btn btn-lg btn-secondary btn-block" type="reset" id="reset">Reset</button>
+ </div>
+</form>
 </div>
 
 
@@ -66,30 +81,65 @@ Date of Birth <input type="date" id="Date Of Birth" name="Date Of Birth"><br>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
     <script>
      // this is the id of the form
-     $("#Apply").click(function(e) {
+     $("#apply").click(function(e) {
+                e.preventDefault();
+        var username = $('#username').val();
+        var password = $('#password').val();
+        var email = $('#email').val();
+        var phone = $('#phone').val();
+        var gender = $('input[name="gender"]:checked').val();
+        var dob = $('#dob').val()?.replace('/', '-');
+        var address = $('#address').val();
 
-        // var username = $('#username').val();
-         // var password = $('#password').val();
-         $.ajax({
-             type: 'POST',
-             url: '/api/auth/signup',
-             crossDomain: true,
-             xhrFields: { 'withCredentials': true },
-             headers: {
-                     'Accept': 'application/json',
-                     'Content-Type': 'application/json'
-                 },
-             
-	     dataType: 'json',
-             data: JSON.stringify({ "username": "chandra",
-                   "email": "golivi.chandrarao@gmail.com", "password": "chandrapassword", "role": ["user"] }),
-           success: function(result, status, jqXHR) {
-                   var cookies = jqXHR.getResponseHeader('Set-Cookie');
-                   console.log(cookies);
-                   window.location.href = '/api/auth/signup';
-             }
-         });
+        if (username && password && phone && gender && dob) {
+            $.ajax({
+                         type: 'POST',
+                         url: '/api/auth/signup',
+                         crossDomain: true,
+                         xhrFields: { 'withCredentials': true },
+                         headers: {
+                                 'Accept': 'application/json',
+                                 'Content-Type': 'application/json'
+                             },
+            	         dataType: 'json',
+                         data: JSON.stringify({
+                           username,
+                           email,
+                           password,
+                           "role": ["user"],
+                           phone,
+                           gender,
+                           dob,
+                           address
+                            }),
+                       success: function(result, status, jqXHR) {
+                               var cookies = jqXHR.getResponseHeader('Set-Cookie');
+                               window.location.href = '/';
+                         }
+                     });
+        } else {
+            alert('Please fill required fields');
+        }
+        return false;
+     });
 
-     });</script>
+     </script>
+     <style>
+     .container {
+         padding: 20px 30px;
+       }
+       .heading {
+         color: green;
+         font-size: 30px;
+       }
+       .home {
+         display: flex;
+         margin: 10px 20px;
+         justify-content: space-around;
+       }
+       .field {
+        margin: 30px 0px 32px 0px;
+       }
+     </style>
   </body>
 </html>

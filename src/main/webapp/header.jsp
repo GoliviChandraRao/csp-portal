@@ -30,16 +30,36 @@ $(document).ready(function() {
 .header-bar {
     display: flex;
     justify-content: space-between;
+    min-height: 100px;
+    width: 100%;
+    background: pink;
 }
 #logout {
     margin-left: auto;
+    padding: 35px;
+    font-weight: bold;
+    }
+.avatar {
+  vertical-align: middle;
+  width: 90px;
+  height: 90px;
+  margin: 15px;
+  border-radius: 50%;
+  border: 2px solid grey;
+  background: lightgrey;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 25px;
+  font-weight: bold;
 }
 </style>
 
 <div class="header-bar">
-<div>user image </div>
-<div>user Name </div>
-<div>user Role </div>
-<div> View Applications </div>
+<div class="avatar">U</div>
+<div>
+    <h4> Name: ${userDetails.username} </h4><br/>
+    <div> Role: ${userDetails.authorities}</div>
+</div>
 <a href="/signout" id="logout">Log Out</a>
 </div>

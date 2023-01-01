@@ -22,7 +22,7 @@
       .left-section {
               background: lightpink;
               border: 8px dashed white;
-              width: 60%;
+              width: 50%;
               border-radius: 5px;
               text-align: center;
               height: 90vh;
@@ -31,7 +31,7 @@
        .right-section {
               background: #eea1a1;
             border: 8px dashed white;
-            width: 40%;
+            width: 35%;
             border-radius: 5px;
             text-align: center;
             height: 90vh;
@@ -40,6 +40,7 @@
   </head>
 
   <body>
+
 <div class="home">
   <div class="left-section">
   <h4> <u>Mission </u></h4>

@@ -1,10 +1,11 @@
+<%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <html>
 <head>
 
 <jsp:include page="header.jsp" />
-<a href="#" style="background-color:pink;">Apply Birth Certificate </a><p>
-    
-
+<a href="/csp/applybirthcertificate" style="background-color:pink;">Apply Birth Certificate </a><p>
 <a href="/csp/viewbcstatus" style="background-color:pink;"> View Birth Certificate Application Status</a>
 	
     <h1>
@@ -45,17 +46,32 @@
     <th>Applied on</th>
     <th>Status</th>
   </tr>
-  <tr>
-    <td> </td>
-    <td> </td>
-    <td> </td>
-    <td><button class="btn success">Download</button></td>
-   
-    
-    
-  </tr>
+
+  <c:forEach var="bcRequest" items="${pendingRequests}" varStatus="loop">
+          <tr>
+              <td> ${loop.count} </td>
+              <td> ${bcRequest.childName} - Birth Certificate</td>
+              <td> ${bcRequest.appliedOn} </td>
+              <td> ${bcRequest.status} - <button class="btn success" class="download" data-id="${bcRequest.id}" >Download</button></td>
+            </tr>
+    </c:forEach>
   
 </table>
+<script>
+$('.download').click(function () {
+    var bcId = $(this).attr('data-id');
+        $.ajax({
+                         type: 'GET',
+                         url: '/api/downloadbc/' + bcId,
+                         crossDomain: true,
+                         xhrFields: { 'withCredentials': true },
+                       success: function(result, status, jqXHR) {
+
+                         }
+                     });
+
+});
+</script>
 
 </body>
 </html>

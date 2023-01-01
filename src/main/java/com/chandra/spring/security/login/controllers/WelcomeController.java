@@ -19,59 +19,59 @@ import org.springframework.web.servlet.ModelAndView;
 @RestController
 @RequestMapping("/")
 public class WelcomeController {
-  @Autowired
-  AuthenticationManager authenticationManager;
+    @Autowired
+    AuthenticationManager authenticationManager;
 
-  @Autowired
-  UserRepository userRepository;
+    @Autowired
+    UserRepository userRepository;
 
-  @Autowired
-  RoleRepository roleRepository;
+    @Autowired
+    RoleRepository roleRepository;
 
-  @Autowired
-  PasswordEncoder encoder;
+    @Autowired
+    PasswordEncoder encoder;
 
-  @Autowired
-  JwtUtils jwtUtils;
+    @Autowired
+    JwtUtils jwtUtils;
 
-  private boolean isAuthenticated() {
-    try {
-      Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-      if (authentication == null || AnonymousAuthenticationToken.class.
-              isAssignableFrom(authentication.getClass())) {
+    private boolean isAuthenticated() {
+        try {
+            Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+            if (authentication == null || AnonymousAuthenticationToken.class.
+                    isAssignableFrom(authentication.getClass())) {
+                return false;
+            }
+            return authentication.isAuthenticated();
+        } catch (Exception e) {
+        }
         return false;
-      }
-      return authentication.isAuthenticated();
-    } catch (Exception e) {
     }
-    return false;
-  }
 
-  private boolean isAdmin() {
-    Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-    return authentication != null && authentication.getAuthorities().stream().anyMatch(a -> a.getAuthority().equalsIgnoreCase("ROLE_ADMIN"));
-  }
-
-
-  @GetMapping({"/", "/csp"})
-  public ModelAndView login(ModelAndView model) {
-    String pageName = "login";
-    if (isAuthenticated()) {
-      pageName = isAdmin() ? "approverejectapplication" : "viewbcstatus";
+    private boolean isAdmin() {
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        return authentication != null && authentication.getAuthorities().stream().anyMatch(a -> a.getAuthority().equalsIgnoreCase("ROLE_ADMIN"));
     }
-    model.setViewName(pageName);
-    return model;
-  }
 
-  @GetMapping({"csp/usersignup"})
-  public ModelAndView registration(ModelAndView model) {
-    String pageName = "registration";
 
-    if (isAuthenticated()) {
-      pageName = isAdmin() ? "approverejectapplication" : "viewbcstatus";
+    @GetMapping({"/", "/csp"})
+    public ModelAndView login(ModelAndView model) {
+        String pageName = "login";
+        if (isAuthenticated()) {
+            pageName = isAdmin() ? "approverejectapplication" : "viewbcstatus";
+        }
+        model.setViewName(pageName);
+        return model;
     }
-    model.setViewName(pageName);
 
-    return model;
-  }
+    @GetMapping({"csp/usersignup"})
+    public ModelAndView registration(ModelAndView model) {
+        String pageName = "registration";
+
+        if (isAuthenticated()) {
+            pageName = isAdmin() ? "approverejectapplication" : "viewbcstatus";
+        }
+        model.setViewName(pageName);
+
+        return model;
+    }
 }

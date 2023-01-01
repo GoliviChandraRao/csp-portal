@@ -11,7 +11,7 @@ INSERT INTO roles(name) VALUES('ROLE_USER');
 INSERT INTO roles(name) VALUES('ROLE_ADMIN');
 
 -- Pre-inset one admin user, username: admin, password: admin123 (minimum password length is 6 char)
-insert into users (id, email, password, username) values (101, 'admin@gmail.com', '$2a$10$LB0IPgoAClVzx/0obUfYJecFSgYqqO23nCUvu.N89qaOt8qnHJLWi', 'admin');
+insert into users (id, email, password, username, address, dob, phone, gender) values (101, 'admin@gmail.com', '$2a$10$LB0IPgoAClVzx/0obUfYJecFSgYqqO23nCUvu.N89qaOt8qnHJLWi', 'admin', 'address', '1991-11-11', '+91123456789', 'M');
 insert into user_roles (user_id, role_id) values(101, 2);
 ```
 <img width="939" alt="image" src="https://user-images.githubusercontent.com/116070875/208569518-0b4dce95-cf0b-451e-b4e7-e2b85422249b.png">

@@ -1,5 +1,6 @@
-
-<!DOCTYPE html>
+<%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <html>
 <head>
 <style>
@@ -39,21 +40,24 @@ tr:nth-child(even) {
     <th>Address Proof</th>
     <th>Action</th>
   </tr>
+
+
+
+  <c:forEach var="bcRequest" items="${pendingRequests}" varStatus="loop">
   <tr>
-    <td> </td>
-    <td> </td>
-    <td> </td>
-    <td> </td>
-    <td> </td>
-    <td> </td>
-    
-    <td><button class="btn success">Download</button> </td>
-    <td><button class="btn success">✅ </button>
-    <button class="btn fail">❌</button>
-    </td>
-    
-  </tr>
-  
+      <td> Birth Certificate </td>
+      <td> ${bcRequest.appliedBy} </td>
+      <td> ${bcRequest.appliedOn} </td>
+      <td> ${bcRequest.childName} </td>
+      <td> ${bcRequest.fatherName} </td>
+      <td> ${bcRequest.gender} </td>
+      <td><button class="btn success download" data-id="${bcRequest.id}">Download</button> </td>
+      <td><button class="btn success accept" data-id="${bcRequest.id}" >✅ </button>
+      <button class="btn fail reject" data-id="${bcRequest.id}" >❌</button>
+      </td>
+
+    </tr>
+    </c:forEach>
 </table>
 
 </body>
