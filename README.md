@@ -20,3 +20,8 @@ insert into user_roles (user_id, role_id) values(101, 2);
 - click on signup link or use - ```http://localhost:8080/csp/usersignup``` to register yourself
 
 Admin pages will be accessed by only admin, Citizen pages will be accessed only by citizen. Only citizen can register, an admin account will be pre-inserted in database. User registration defaults to citizen. Once logged into the portal we must logout to see the login/register page. without logout citizen will be landed on home pages(birth certificate related pages) of respective user roles(user or admin)
+
+
+### ERD
+
+<img width="1295" alt="image" src="https://user-images.githubusercontent.com/116070875/210161109-9e6182b5-ddd6-4382-a460-f35a2dfa5f80.png">
